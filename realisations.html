@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réalisations — Home Sweet Home Canada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#ffffff;
+    --bg-dark-2:#f4e8cf;
+    --bg-cream:#f1e4c9;
+    --bg-cream-2:#e9d8b6;
+    --ink:#2a1b12;
+    --cream:#f6ecd9;
+    --red:#a3311f;
+    --green:#33513c;
+    --gold:#c08a28;
+    --line: rgba(42,27,18,0.18);
+    --line-cream: rgba(246,236,217,0.22);
+    --serif: 'Fraunces', serif;
+    --sans: 'Karla', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg-cream);
+    -webkit-font-smoothing: antialiased;
+  }
+  img{display:block; max-width:100%; height:auto;}
+  a{color:inherit;}
+  .wrap{ max-width:1240px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  header.site{
+    background: var(--bg-dark);
+    color: var(--ink);
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .wordmark{
+    font-family: var(--serif); font-weight:600; font-size: 1.3rem;
+    color: var(--ink); display:flex; align-items:baseline; gap:8px;
+    text-decoration:none;
+  }
+  .wordmark .amp{ color: var(--gold); font-style:italic; font-weight:500; }
+  .wordmark img{ height:34px; width:auto; display:block; }
+
+  footer.site .wordmark img{ height:26px; }
+  .footer-mark{ display:flex; align-items:center; gap:10px; }
+  .footer-mark img{ height:32px; width:auto; }
+  .footer-mark .mark-chip{
+    display:flex; align-items:center;
+  }
+  nav.links{ display:flex; gap:32px; font-size:0.92rem; align-items:center; }
+  nav.links a{ text-decoration:none; opacity:0.82; transition: opacity .15s ease; }
+  nav.links a:hover{ opacity:1; }
+  nav.links a.current{ opacity:1; color:var(--red); }
+  @media (max-width:760px){ nav.links{ display:none; } }
+
+  .page-hero{
+    background: var(--bg-dark);
+    color: var(--ink);
+    padding: 20px 0 64px;
+    text-align:center;
+  }
+  .page-hero .eyebrow{ font-size:0.86rem; color:var(--gold); font-weight:600; margin-bottom:14px; }
+  .page-hero h1{
+    font-family: var(--serif); font-weight:600;
+    font-size: clamp(2rem, 4vw, 2.9rem); line-height:1.1;
+  }
+  .page-hero p{
+    margin: 18px auto 0; max-width: 52ch;
+    color: rgba(42,27,18,0.72); font-size:1.02rem; line-height:1.6;
+  }
+
+  .filters{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:10px;
+    padding: 40px 0 8px;
+  }
+  .filter-btn{
+    font-family: var(--sans); font-weight:600; font-size:0.88rem;
+    background:transparent; border: 1px solid var(--line);
+    color: var(--ink); padding: 9px 20px; border-radius: 2px;
+    cursor:pointer; transition: all .15s ease;
+  }
+  .filter-btn:hover{ border-color: var(--red); }
+  .filter-btn.active{ background: var(--red); color: var(--cream); border-color: var(--red); }
+
+  .gallery{
+    padding: 32px 0 100px;
+  }
+  .g-grid{
+    columns: 4 260px;
+    column-gap: 18px;
+  }
+  @media (max-width:900px){ .g-grid{ columns: 2 220px; } }
+  @media (max-width:520px){ .g-grid{ columns: 1; max-width:420px; margin:0 auto; } }
+
+  .g-item{
+    break-inside: avoid;
+    margin-bottom: 18px;
+    border: 1px solid var(--line);
+    background: var(--bg-cream-2);
+    padding: 8px;
+    cursor: zoom-in;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .g-item:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px -14px rgba(42,27,18,0.35);
+  }
+  .g-item img{ width:100%; }
+  .g-item.hidden{ display:none; }
+
+  /* lightbox */
+  .lightbox{
+    position: fixed; inset:0; background: rgba(20,12,7,0.92);
+    display:none; align-items:center; justify-content:center;
+    z-index: 100; padding: 40px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{
+    max-width: min(88vw, 800px); max-height: 84vh;
+    border: 6px solid var(--bg-dark-2);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+  }
+  .lightbox-close{
+    position:absolute; top:26px; right:32px;
+    color: var(--cream); font-family: var(--sans); font-size:0.95rem;
+    background:transparent; border:1px solid var(--line-cream);
+    padding:8px 16px; border-radius:2px; cursor:pointer;
+  }
+  .lightbox-close:hover{ border-color:var(--cream); }
+
+  footer.site{
+    background: var(--bg-dark); color: rgba(42,27,18,0.6);
+    padding: 34px 0; font-size:0.84rem;
+    border-top: 1px solid var(--line);
+  }
+  footer.site .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .g-item{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="index.html"><img src="images/home-sweet-home-canada.png" alt="Home Sweet Home Canada"></a>
+    <nav class="links">
+      <a href="index.html#paniers">Les paniers</a>
+      <a href="index.html#personnalisation">Personnalisation</a>
+      <a href="#" class="current">Réalisations</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Galerie</div>
+    <h1>Nos réalisations</h1>
+    <p>Un aperçu des pièces gravées à la main — de quoi s'inspirer pour composer votre propre panier.</p>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="filters">
+<button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="enseignes">Enseignes</button>
+      <button class="filter-btn" data-filter="personnalise">Personnalisé</button>
+      <button class="filter-btn" data-filter="sous-verres">Sous-verres</button>
+      <button class="filter-btn" data-filter="rondins">Rondins</button>
+      <button class="filter-btn" data-filter="aimants">Aimants</button>
+      <button class="filter-btn" data-filter="porte-cellulaire">Porte-cellulaire</button>
+
+    </div>
+    <div class="g-grid">
+      <figure class="g-item" data-cat="sous-verres">
+        <img src="images/sous-verres-home-is-where-our-story-begins.jpg" alt="Sous-verres Home is where our story begins" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="sous-verres">
+        <img src="images/sous-verres-en-bois-designs-varies-home-sweet.jpg" alt="Sous-verres en bois, designs variés Home Sweet Home" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="porte-cellulaire">
+        <img src="images/porte-cellulaire-en-bois-avec-telephone.jpg" alt="Porte-cellulaire en bois avec téléphone" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="porte-cellulaire">
+        <img src="images/porte-cellulaire-personnalise-equipe-carolyn-.jpg" alt="Porte-cellulaire personnalisé Équipe Carolyn et Monique" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="porte-cellulaire">
+        <img src="images/porte-cellulaires-en-bois-designs-assortis.jpg" alt="Porte-cellulaires en bois, designs assortis" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="porte-cellulaire">
+        <img src="images/porte-cellulaire-tenant-une-petite-affiche-ho.jpg" alt="Porte-cellulaire tenant une petite affiche Home Sweet Home" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="enseignes">
+        <img src="images/enseigne-en-bois-avec-ecorce-naturelle-sur-ma.jpg" alt="Enseigne en bois avec écorce naturelle sur manteau de cheminée" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="personnalise">
+        <img src="images/enseigne-personnalisee-mary-et-michel-gravee-.jpg" alt="Enseigne personnalisée Mary et Michel gravée sur bois" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="sous-verres">
+        <img src="images/pile-de-sous-verres-en-bois-graves-home-sweet.jpg" alt="Pile de sous-verres en bois gravés Home Sweet Home" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="rondins">
+        <img src="images/rondin-de-bois-grave-live-love-laugh-avec-eco.jpg" alt="Rondin de bois gravé Live Love Laugh avec écorce" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="aimants">
+        <img src="images/collection-d-aimants-en-bois-graves-motifs-va-2.jpg" alt="Collection d'aimants en bois gravés, motifs variés" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="enseignes">
+        <img src="images/enseigne-en-bois-gravee-style-pennsylvania-du.jpg" alt="Enseigne en bois gravée, style Pennsylvania Dutch" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="personnalise">
+        <img src="images/collection-d-aimants-personnalises-pour-court.jpg" alt="Collection d'aimants personnalisés pour courtiers immobiliers" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="aimants">
+        <img src="images/aimants-en-bois-avec-feuille-d-erable-et-home.jpg" alt="Aimants en bois avec feuille d'érable et Home Sweet Home" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="enseignes">
+        <img src="images/detail-d-une-enseigne-en-bois-gravee-avec-eco.jpg" alt="Détail d'une enseigne en bois gravée avec écorce" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="personnalise">
+        <img src="images/enseigne-personnalisee-benedicte-et-patrick-l.jpg" alt="Enseigne personnalisée Bénédicte et Patrick, Lacs Forest" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="sous-verres">
+        <img src="images/sous-verres-en-bois-graves-motifs-lac-et-mont.jpg" alt="Sous-verres en bois gravés, motifs lac et montagne" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="rondins">
+        <img src="images/rondin-de-bois-grave-vivre-aimer-rire-en-fami.jpg" alt="Rondin de bois gravé Vivre Aimer Rire en famille" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="aimants">
+        <img src="images/aimants-en-bois-graves-huard-et-motifs-folklo.jpg" alt="Aimants en bois gravés, huard et motifs folkloriques" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="enseignes">
+        <img src="images/enseigne-home-sweet-home-gravee-sur-bois.jpg" alt="Enseigne Home Sweet Home gravée sur bois" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="personnalise">
+        <img src="images/aimants-graves-equipe-carolyn-et-monique.jpg" alt="Aimants gravés Équipe Carolyn et Monique" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="sous-verres">
+        <img src="images/sous-verres-en-bois-graves-huard-et-foret.jpg" alt="Sous-verres en bois gravés, huard et forêt" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="rondins">
+        <img src="images/rondin-de-bois-grave-live-love-laugh-vue-rapp.jpg" alt="Rondin de bois gravé Live Love Laugh, vue rapprochée" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="personnalise">
+        <img src="images/detail-gravure-personnalisee-sur-bois.jpg" alt="Détail gravure personnalisée sur bois" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="sous-verres">
+        <img src="images/sous-verres-en-bois-empiles-motifs-assortis.jpg" alt="Sous-verres en bois empilés, motifs assortis" loading="lazy">
+      </figure>
+      <figure class="g-item" data-cat="rondins">
+        <img src="images/rondin-de-bois-grave-detail-de-la-gravure-flo.jpg" alt="Rondin de bois gravé, détail de la gravure florale" loading="lazy">
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-mark">
+      <span class="mark-chip"><img src="images/sceau-home-sweet-home-canada.png" alt="Sceau Home Sweet Home Canada"></span>
+      <span style="font-family:var(--serif); font-weight:600; font-size:1rem; color:var(--ink);">Home Sweet Home <span style="color:var(--gold); font-style:italic;">Canada</span></span>
+    </div>
+    <div>Fabriqué à la main, Québec · © 2026</div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">Fermer ✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.g-item');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      items.forEach(item => {
+        if (filter === 'all' || item.dataset.cat === filter) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+  document.getElementById('lightboxClose').addEventListener('click', () => {
+    lightbox.classList.remove('open');
+  });
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) lightbox.classList.remove('open');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos paniers en détail — Home Sweet Home Canada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-dark:#ffffff;
+    --bg-dark-2:#f4e8cf;
+    --bg-cream:#f1e4c9;
+    --bg-cream-2:#e9d8b6;
+    --ink:#2a1b12;
+    --cream:#f6ecd9;
+    --red:#a3311f;
+    --green:#33513c;
+    --gold:#c08a28;
+    --line: rgba(42,27,18,0.18);
+    --line-cream: rgba(246,236,217,0.22);
+    --serif: 'Fraunces', serif;
+    --sans: 'Karla', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg-cream);
+    -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block; max-width:100%; height:auto;}
+  a{color:inherit;}
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  header.site{
+    background: var(--bg-dark);
+    color: var(--ink);
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  header.site .wrap{ display:flex; align-items:center; justify-content:space-between; }
+  .wordmark{ display:flex; align-items:baseline; gap:8px; text-decoration:none; }
+  .wordmark img{ height:34px; width:auto; display:block; }
+  nav.links{ display:flex; gap:32px; font-size:0.92rem; align-items:center; }
+  nav.links a{ text-decoration:none; opacity:0.82; transition: opacity .15s ease; }
+  nav.links a:hover{ opacity:1; }
+  nav.links a.current{ opacity:1; color:var(--red); }
+  @media (max-width:820px){ nav.links{ display:none; } }
+
+  .page-hero{ background: var(--bg-dark); padding: 20px 0 56px; text-align:center; }
+  .page-hero .eyebrow{ font-size:0.86rem; color:var(--red); font-weight:700; letter-spacing:0.02em; margin-bottom:14px; }
+  .page-hero h1{ font-family: var(--serif); font-weight:600; font-size: clamp(2rem, 4vw, 2.7rem); line-height:1.12; }
+  .page-hero p{ margin:18px auto 0; max-width:56ch; color:rgba(42,27,18,0.72); font-size:1.02rem; line-height:1.6; }
+
+  .placeholder-note{
+    max-width:720px; margin: 0 auto 10px; text-align:center;
+    font-size:0.86rem; color: var(--red); background: rgba(163,49,31,0.08);
+    border: 1px dashed rgba(163,49,31,0.35); padding: 10px 18px; border-radius:3px;
+  }
+
+  /* ---- basket detail blocks ---- */
+  .basket-section{ padding: 60px 0; }
+  .basket-section:nth-child(even){ background: var(--bg-cream); }
+  .basket-block{ display:grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items:start; }
+  @media (max-width:860px){ .basket-block{ grid-template-columns:1fr; } }
+
+  .basket-info .kicker{ font-family:var(--serif); font-style:italic; color:var(--green); font-size:1.05rem; margin-bottom:6px; }
+  .basket-info h2{ font-family:var(--serif); font-weight:600; font-size: clamp(1.6rem,2.6vw,2.1rem); }
+  .basket-info .price-tag{
+    display:inline-block; margin-top:10px; background: var(--red); color: var(--cream);
+    font-weight:700; font-size:0.95rem; padding: 6px 16px; border-radius:2px;
+  }
+  .basket-info .price-tag.tbd{ background: transparent; border:1px solid var(--line); color: rgba(42,27,18,0.6); }
+  .basket-info ul.items{ list-style:none; margin-top:22px; display:flex; flex-direction:column; gap:12px; }
+  .basket-info ul.items li{
+    display:flex; justify-content:space-between; gap:12px;
+    font-size:0.98rem; padding-bottom:12px; border-bottom:1px solid var(--line);
+  }
+  .basket-info ul.items li .qty{ font-weight:700; color:var(--red); min-width:26px; }
+  .basket-info ul.items li .name{ flex:1; }
+  .basket-info ul.items li .flag{ font-size:0.78rem; color:var(--green); font-weight:600; white-space:nowrap; }
+  .basket-info .note{ margin-top:16px; font-size:0.86rem; color:rgba(42,27,18,0.6); font-style:italic; }
+
+  .basket-photos{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+  .basket-photos .ph{
+    border: 1px solid var(--line); background: var(--bg-cream-2);
+    aspect-ratio: 1; display:flex; align-items:center; justify-content:center;
+    overflow:hidden; position:relative;
+  }
+  .basket-photos .ph img{ width:100%; height:100%; object-fit:cover; }
+  .basket-photos .ph.empty{
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:6px;
+    color: rgba(42,27,18,0.4); font-size:0.78rem; text-align:center; padding:10px;
+  }
+  .basket-photos .ph.wide{ grid-column: span 2; aspect-ratio: 2/1; }
+
+  /* ---- à la carte ---- */
+  .a-la-carte{ padding: 70px 0 90px; background: var(--bg-dark-2); }
+  .a-la-carte .head{ text-align:center; margin-bottom:44px; }
+  .a-la-carte .head h2{ font-family:var(--serif); font-weight:600; font-size: clamp(1.7rem,3vw,2.3rem); }
+  .a-la-carte .head p{ margin-top:12px; color:rgba(42,27,18,0.72); max-width:60ch; margin-left:auto; margin-right:auto; }
+
+  .carte-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width:760px){ .carte-grid{ grid-template-columns:1fr; } }
+
+  .carte-cat{ background: #fff; border:1px solid var(--line); }
+  .carte-cat h3{
+    font-family: var(--serif); font-weight:600; font-size:1.1rem;
+    padding: 14px 18px; border-bottom:1px solid var(--line); background: var(--bg-cream-2);
+  }
+  .carte-cat table{ width:100%; border-collapse:collapse; }
+  .carte-cat td{ padding: 11px 18px; font-size:0.92rem; border-bottom:1px solid var(--line); }
+  .carte-cat tr:last-child td{ border-bottom:none; }
+  .carte-cat td.item-name{ color: rgba(42,27,18,0.88); }
+  .carte-cat td.item-price{ text-align:right; font-weight:700; color:var(--red); white-space:nowrap; }
+  .carte-cat td.item-price.tbd{ color: rgba(163,49,31,0.55); font-weight:600; font-size:0.84rem; }
+
+  .carte-footnote{
+    max-width:800px; margin: 32px auto 0; text-align:center;
+    font-size:0.88rem; color: rgba(42,27,18,0.65); line-height:1.6;
+  }
+
+  footer.site{
+    background: var(--bg-dark); color: rgba(42,27,18,0.6);
+    padding: 34px 0; font-size:0.84rem; border-top: 1px solid var(--line);
+  }
+  footer.site .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-mark{ display:flex; align-items:center; gap:10px; }
+  .footer-mark img{ height:30px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="index.html"><img src="images/home-sweet-home-canada.png" alt="Home Sweet Home Canada"></a>
+    <nav class="links">
+      <a href="index.html#paniers">Les paniers</a>
+      <a href="index.html#personnalisation">Personnalisation</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="#" class="current">Contenu détaillé</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Contenu détaillé</div>
+    <h1>Ce que contient chaque panier</h1>
+    <p>Le détail exact de chaque format, item par item — et une section à la carte si vous préférez composer votre propre sélection ou ajouter des pièces à un panier existant.</p>
+  </div>
+</section>
+
+<div class="placeholder-note wrap">📷 Les photos individuelles de chaque panier et de leurs items seront ajoutées ici prochainement.</div>
+
+<!-- ESSENTIEL -->
+<section class="basket-section">
+  <div class="wrap">
+    <div class="basket-block">
+      <div class="basket-info">
+        <div class="kicker">L'Essentiel</div>
+        <h2>Petit panier</h2>
+        <div class="price-tag">65 $</div>
+        <ul class="items">
+          <li><span class="qty">4×</span><span class="name">Sous-verres en pin</span></li>
+          <li><span class="qty">2×</span><span class="name">Aimants gravés</span></li>
+          <li><span class="qty">1×</span><span class="name">Plaque Home Sweet Home (5-6 po, live edge)</span></li>
+          <li><span class="qty">1×</span><span class="name">Porte-cellulaire</span><span class="flag">Logo courtier inclus</span></li>
+        </ul>
+        <p class="note">Idéal pour un budget limité tout en offrant quelque chose de différent. Le porte-cellulaire peut aussi tenir une petite affiche — double usage!</p>
+      </div>
+      <div class="basket-photos">
+        <div class="ph"><img src="images/enseigne-en-bois-gravee-avec-ecorce-naturelle.jpg" alt="Plaque Home Sweet Home"></div>
+        <div class="ph"><img src="images/sous-verres-carres-en-bois-graves-motifs-lac-.jpg" alt="Sous-verres en pin"></div>
+        <div class="ph"><img src="images/collection-d-aimants-en-bois-graves-motifs-va.jpg" alt="Aimants gravés"></div>
+        <div class="ph"><img src="images/porte-cellulaire-personnalise-equipe-carolyn-.jpg" alt="Porte-cellulaire personnalisé"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE -->
+<section class="basket-section">
+  <div class="wrap">
+    <div class="basket-block">
+      <div class="basket-photos">
+        <div class="ph empty">📷<br>Planche de charcuterie + couteau<br>— photo à venir</div>
+        <div class="ph"><img src="images/sous-verres-carres-en-bois-graves-motifs-lac-.jpg" alt="Sous-verres en pin"></div>
+        <div class="ph"><img src="images/affiche-home-sweet-home-personnalisee.jpg" alt="Affiche Home Sweet Home personnalisée"></div>
+        <div class="ph"><img src="images/collection-d-aimants-en-bois-graves-motifs-va.jpg" alt="Aimants gravés"></div>
+      </div>
+      <div class="basket-info">
+        <div class="kicker">Le Signature</div>
+        <h2>Panier moyen</h2>
+        <div class="price-tag">95 $</div>
+        <ul class="items">
+          <li><span class="qty">1×</span><span class="name">Planche de charcuterie avec couteau</span></li>
+          <li><span class="qty">4×</span><span class="name">Sous-verres en pin</span><span class="flag">1 avec logo courtier</span></li>
+          <li><span class="qty">1×</span><span class="name">Affiche Home Sweet Home moyenne (8-10 po)</span></li>
+          <li><span class="qty">4×</span><span class="name">Aimants gravés</span><span class="flag">1 avec logo courtier</span></li>
+          <li><span class="qty">1×</span><span class="name">Porte-cellulaire</span><span class="flag">Logo courtier inclus</span></li>
+        </ul>
+        <p class="note">Le plus populaire chez les courtiers — possibilité d'ajouter des gourmandises locales (à confirmer).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESTIGE -->
+<section class="basket-section">
+  <div class="wrap">
+    <div class="basket-block">
+      <div class="basket-info">
+        <div class="kicker">Le Prestige</div>
+        <h2>Grand panier</h2>
+        <div class="price-tag tbd">Contenu à confirmer</div>
+        <ul class="items">
+          <li><span class="qty">·</span><span class="name">Pièce maîtresse gravée sur mesure</span></li>
+          <li><span class="qty">·</span><span class="name">Plusieurs items en bois assortis</span></li>
+          <li><span class="qty">·</span><span class="name">Sélection de produits québécois</span></li>
+          <li><span class="qty">·</span><span class="name">Livraison et mise en scène possibles</span></li>
+        </ul>
+        <p class="note">Le détail exact et le prix seront ajoutés dès que confirmés.</p>
+      </div>
+      <div class="basket-photos">
+        <div class="ph wide empty">📷 Détails et photos à venir</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- À LA CARTE -->
+<section class="a-la-carte">
+  <div class="wrap">
+    <div class="head">
+      <h2>À la carte</h2>
+      <p>Envie de commander des items séparément, ou d'ajouter des pièces à un panier existant? Voici le menu complet.</p>
+    </div>
+
+    <div class="carte-grid">
+      <div class="carte-cat">
+        <h3>Enseignes & plaques</h3>
+        <table>
+          <tr><td class="item-name">Plaque Home Sweet Home (5-6 po, live edge)</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Affiche Home Sweet Home moyenne (8-10 po)</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Grande enseigne personnalisée</td><td class="item-price tbd">[prix]</td></tr>
+        </table>
+      </div>
+
+      <div class="carte-cat">
+        <h3>Sous-verres</h3>
+        <table>
+          <tr><td class="item-name">Sous-verre en pin (à l'unité)</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Jeu de 4 sous-verres</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Sous-verre avec logo courtier</td><td class="item-price tbd">[prix]</td></tr>
+        </table>
+      </div>
+
+      <div class="carte-cat">
+        <h3>Aimants</h3>
+        <table>
+          <tr><td class="item-name">Aimant gravé (à l'unité)</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Aimant avec logo courtier</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Lot de 4 aimants assortis</td><td class="item-price tbd">[prix]</td></tr>
+        </table>
+      </div>
+
+      <div class="carte-cat">
+        <h3>Rondins & décor</h3>
+        <table>
+          <tr><td class="item-name">Rondin gravé avec écorce</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Rondin personnalisé (nom/date)</td><td class="item-price tbd">[prix]</td></tr>
+        </table>
+      </div>
+
+      <div class="carte-cat">
+        <h3>Cuisine</h3>
+        <table>
+          <tr><td class="item-name">Planche de charcuterie avec couteau</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Planche de charcuterie seule</td><td class="item-price tbd">[prix]</td></tr>
+        </table>
+      </div>
+
+      <div class="carte-cat">
+        <h3>Accessoires</h3>
+        <table>
+          <tr><td class="item-name">Porte-cellulaire personnalisé</td><td class="item-price tbd">[prix]</td></tr>
+          <tr><td class="item-name">Emballage kraft avec ruban</td><td class="item-price tbd">[prix]</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <p class="carte-footnote">Les prix à la carte seront confirmés prochainement. Pour une commande personnalisée ou l'ajout d'items à un panier existant, écrivez-nous via le formulaire de commande — on vous prépare une soumission sur mesure.</p>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-mark">
+      <img src="images/sceau-home-sweet-home-canada.png" alt="Sceau Home Sweet Home Canada">
+      <span style="font-family:var(--serif); font-weight:600; font-size:1rem; color:var(--ink);">Home Sweet Home <span style="color:var(--gold); font-style:italic;">Canada</span></span>
+    </div>
+    <div>Fabriqué à la main, Québec · © 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
