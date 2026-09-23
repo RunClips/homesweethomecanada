@@ -362,6 +362,27 @@
     .steps{ grid-template-columns: 1fr; }
   }
 
+  /* ---------- faq ---------- */
+  .faq{ padding: 84px 0 90px; background: var(--bg-cream); }
+  .faq .head{ text-align:center; margin-bottom:40px; }
+  .faq .head h2{ font-family: var(--serif); font-weight:600; font-size: clamp(1.7rem,3vw,2.3rem); }
+  .faq .head p{ margin-top:12px; color:rgba(42,27,18,0.7); }
+  .faq .list{ max-width: 760px; margin: 0 auto; border-top:1px solid var(--line); }
+  .faq details{ border-bottom:1px solid var(--line); }
+  .faq summary{
+    list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
+    font-family: var(--serif); font-weight:600; font-size:1.06rem; line-height:1.4;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{
+    content:'+'; position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    font-family: var(--sans); font-weight:700; font-size:1.3rem; color:var(--red);
+  }
+  .faq details[open] summary::after{ content:'–'; }
+  .faq summary:hover{ color:var(--red); }
+  .faq summary:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+  .faq .answer{ padding:0 44px 22px 4px; font-size:0.97rem; line-height:1.7; color:rgba(42,27,18,0.8); }
+
   /* ---------- contact ---------- */
   .contact{
     background: var(--bg-dark-2);
@@ -429,10 +450,11 @@
     <div class="wordmark"><img src="images/home-sweet-home-canada.png" alt="Home Sweet Home Canada"></div>
     <nav class="links">
       <a href="#paniers">Les paniers</a>
-      <a href="#personnalisation">Personnalisation</a>
+      <a href="produits.html">Produits</a>
       <a href="realisations.html">Réalisations</a>
       <a href="contenu-paniers.html">Contenu détaillé</a>
       <a href="#comment">Comment ça marche</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="lang-toggle"><span class="active">FR</span> / <a href="en/index.html" lang="en" hreflang="en">EN</a></div>
@@ -499,7 +521,7 @@
         <div class="tier-photo"><img src="images/panier-essentiel-cadeau-de-cloture.jpg" alt="Panier L'Essentiel offert comme cadeau de clôture" loading="lazy"></div>
         <div class="kicker">L'Essentiel</div>
         <h3>Petit panier</h3>
-        <div class="price-note">65 $ — pour un budget serré, sans faire de compromis</div>
+        <div class="price-note">65 $ — tout ce qu'il faut pour marquer le coup</div>
         <ul>
           <li>4 sous-verres en pin</li>
           <li>2 aimants gravés</li>
@@ -613,6 +635,61 @@
         <h4>Vous recevez ou on livre</h4>
         <p>Cueillette, livraison ou envoi directement à vos clients.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="head">
+      <h2>Questions fréquentes</h2>
+      <p>Délais, quantités, logo, livraison — les réponses avant de commander.</p>
+    </div>
+    <div class="list">
+        <details>
+          <summary>Quel est le délai de production?</summary>
+          <div class="answer">2 jours ouvrables pour 3 paniers et moins, 5 jours ouvrables jusqu'à 8 paniers, et 10 jours ouvrables pour plus de 8 paniers d'un coup. Le délai part de la confirmation de la commande et de la réception de votre logo.</div>
+        </details>
+        <details>
+          <summary>Quelle est la date limite pour recevoir avant Noël?</summary>
+          <div class="answer">Le 13 décembre. Passé cette date, on fait notre possible, mais on ne garantit plus la livraison avant les Fêtes. Pour une grosse commande, réservez tôt : les places en atelier partent vite en novembre.</div>
+        </details>
+        <details>
+          <summary>Y a-t-il une quantité minimum?</summary>
+          <div class="answer">Non. Vous pouvez commander un seul panier.</div>
+        </details>
+        <details>
+          <summary>Est-ce qu'il y a un rabais de quantité?</summary>
+          <div class="answer">Oui, 10 % de rabais à partir de 10 paniers.</div>
+        </details>
+        <details>
+          <summary>Comment est-ce que je vous envoie mon logo?</summary>
+          <div class="answer">Par courriel à atelier83.jm@gmail.com, en mentionnant votre nom. Un PNG haute résolution ou un PDF fonctionne bien. Si vous avez un fichier vectoriel (AI, EPS, SVG), c'est encore mieux pour la gravure.</div>
+        </details>
+        <details>
+          <summary>Puis-je choisir des designs différents d'un panier à l'autre?</summary>
+          <div class="answer">Oui. Indiquez-le dans la case Notes du formulaire de commande et on confirme les détails par courriel avant de graver.</div>
+        </details>
+        <details>
+          <summary>Est-ce que vous livrez?</summary>
+          <div class="answer">La livraison se discute au moment de la commande, cas par cas selon la quantité et la destination. Des frais de livraison sont à prévoir. La cueillette reste toujours possible.</div>
+        </details>
+        <details>
+          <summary>Comment se fait le paiement?</summary>
+          <div class="answer">Vous recevez une facture par QuickBooks. Elle doit être réglée avant la récupération ou l'envoi des paniers.</div>
+        </details>
+        <details>
+          <summary>Est-ce que je vois le résultat avant de récupérer ma commande?</summary>
+          <div class="answer">Oui. Dès que votre commande est terminée, on vous envoie un courriel avec des photos de vos produits.</div>
+        </details>
+        <details>
+          <summary>Les produits sont-ils remboursables?</summary>
+          <div class="answer">Non. Chaque pièce est gravée sur mesure à votre nom ou à celui de votre client, alors les commandes ne sont pas remboursables une fois la gravure lancée.</div>
+        </details>
+        <details>
+          <summary>Mon panier sera-t-il exactement comme sur les photos?</summary>
+          <div class="answer">Les photos du site sont là pour montrer le style et le contenu. Le bois est une matière vivante : le grain, la teinte et l'écorce varient d'une pièce à l'autre, et de petites imperfections naturelles font partie du charme. Chaque panier est monté à la main et vérifié avant de partir.</div>
+        </details>
     </div>
   </div>
 </section>

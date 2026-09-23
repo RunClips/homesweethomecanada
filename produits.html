@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos produits — Home Sweet Home Canada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="alternate" hreflang="fr" href="https://homesweethomecanada.com/produits.html">
+<link rel="alternate" hreflang="en" href="https://homesweethomecanada.com/en/produits.html">
+<style>
+  :root{
+    --bg-dark:#ffffff; --bg-dark-2:#f4e8cf; --bg-cream:#f1e4c9; --bg-cream-2:#e9d8b6;
+    --ink:#2a1b12; --cream:#f6ecd9; --red:#a3311f; --green:#33513c; --gold:#c08a28;
+    --line: rgba(42,27,18,0.18); --line-cream: rgba(246,236,217,0.22);
+    --serif: 'Fraunces', serif; --sans: 'Karla', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ font-family: var(--sans); color: var(--ink); background: var(--bg-cream); -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  img{display:block; max-width:100%; height:auto;}
+  a{color:inherit;}
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  header.site{ background: var(--bg-dark); color: var(--ink); padding: 22px 0; border-bottom:1px solid var(--line); }
+  header.site .wrap{ display:flex; align-items:center; justify-content:space-between; gap:18px; }
+  .wordmark{ display:flex; align-items:baseline; gap:8px; text-decoration:none; }
+  .wordmark img{ height:34px; width:auto; display:block; }
+  nav.links{ display:flex; gap:28px; font-size:0.92rem; align-items:center; }
+  nav.links a{ text-decoration:none; opacity:0.82; transition: opacity .15s ease; }
+  nav.links a:hover{ opacity:1; }
+  nav.links a.current{ opacity:1; color:var(--red); }
+  @media (max-width:980px){ nav.links{ display:none; } }
+  .lang-toggle{ font-size:0.82rem; border:1px solid var(--line); border-radius:2px; padding:5px 10px; display:flex; gap:6px; align-items:center; flex-shrink:0; }
+  .lang-toggle span.active{ color:var(--gold); font-weight:600; }
+  .lang-toggle a{ color:inherit; text-decoration:none; opacity:0.6; }
+  .lang-toggle a:hover, .lang-toggle a:focus-visible{ opacity:1; text-decoration:underline; }
+
+  .page-hero{ background: var(--bg-dark); padding: 20px 0 56px; text-align:center; }
+  .page-hero .eyebrow{ font-size:0.86rem; color:var(--red); font-weight:700; margin-bottom:14px; }
+  .page-hero h1{ font-family: var(--serif); font-weight:600; font-size: clamp(2rem, 4vw, 2.7rem); line-height:1.12; }
+  .page-hero p{ margin:18px auto 0; max-width:58ch; color:rgba(42,27,18,0.72); font-size:1.02rem; line-height:1.6; }
+
+  .product{ padding: 58px 0; border-top:1px solid var(--line); }
+  .product:nth-child(even){ background: var(--bg-cream-2); }
+  .product .wrap{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:48px; align-items:center; }
+  .product:nth-child(even) .wrap{ direction:rtl; }
+  .product:nth-child(even) .wrap > *{ direction:ltr; }
+  @media (max-width:900px){ .product .wrap, .product:nth-child(even) .wrap{ grid-template-columns:1fr; gap:28px; direction:ltr; } }
+
+  .p-info h2{ font-family:var(--serif); font-weight:600; font-size: clamp(1.5rem,2.4vw,2rem); }
+  .p-info .size{ font-size:0.86rem; color:var(--green); font-style:italic; margin-top:6px; }
+  .p-info p{ margin-top:16px; line-height:1.65; color:rgba(42,27,18,0.8); max-width:44ch; }
+  .p-info .order{ display:inline-block; margin-top:22px; background:var(--red); color:var(--cream);
+    font-weight:700; font-size:0.92rem; text-decoration:none; padding:12px 22px; border-radius:2px; }
+  .p-info .order:hover{ background:#8c2a1a; }
+  .p-info .order:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  .p-photos{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; }
+  .p-photos a{ display:block; border:1px solid var(--line); background:#fff; padding:6px; }
+  .p-photos a:hover{ border-color:var(--red); }
+  .p-photos a.main{ grid-column: span 3; }
+  .p-photos img{ width:100%; aspect-ratio:4/3; object-fit:cover; }
+  .p-photos a.main img{ aspect-ratio:3/2; }
+
+  .designs{ margin-top:34px; grid-column:1 / -1; }
+  .designs h3{ font-family:var(--serif); font-weight:600; font-size:1.05rem; margin-bottom:10px; }
+  .designs .sheet{ border:1px solid var(--line); background:#fff; padding:10px; }
+  .designs p{ font-size:0.86rem; color:rgba(42,27,18,0.62); margin-top:8px; }
+
+  .closer{ background: var(--bg-dark-2); padding: 56px 0; text-align:center; }
+  .closer h2{ font-family:var(--serif); font-weight:600; font-size: clamp(1.5rem,2.6vw,2rem); }
+  .closer p{ margin:14px auto 0; max-width:52ch; color:rgba(42,27,18,0.75); line-height:1.6; }
+  .closer .order{ display:inline-block; margin-top:24px; background:var(--red); color:var(--cream);
+    font-weight:700; font-size:0.95rem; text-decoration:none; padding:14px 26px; border-radius:2px; }
+  .closer .order:hover{ background:#8c2a1a; }
+
+  footer.site{ background: var(--bg-dark); color: rgba(42,27,18,0.6); padding: 34px 0; font-size:0.84rem; border-top:1px solid var(--line); }
+  footer.site .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-mark{ display:flex; align-items:center; gap:10px; }
+  .footer-mark img{ height:30px; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="wordmark" href="index.html"><img src="images/home-sweet-home-canada.png" alt="Home Sweet Home Canada"></a>
+    <nav class="links">
+      <a href="index.html#paniers">Les paniers</a>
+      <a href="#" class="current">Produits</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="contenu-paniers.html">Contenu détaillé</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="lang-toggle"><span class="active">FR</span> / <a href="en/produits.html" lang="en" hreflang="en">EN</a></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">Nos produits</div>
+    <h1>Chaque pièce, de près</h1>
+    <p>Tout ce qui compose nos paniers, gravé à la main sur bois. Cliquez sur une photo pour la voir en grand.</p>
+  </div>
+</section>
+
+<section class="product" id="affiches">
+  <div class="wrap">
+    <div class="p-info">
+      <h2>Affiches en bois</h2>
+      <div class="size">5-6 po et 8-10 po · live edge</div>
+      <p>La pièce maîtresse du panier. Gravée sur pin blanc avec l'écorce laissée sur le bord, elle se pose sur un manteau de cheminée, une tablette ou un comptoir. Deux formats : la petite dans L'Essentiel, la moyenne dans Le Signature.</p>
+      <a class="order" href="https://docs.google.com/forms/d/e/1FAIpQLSfIyIFN_Lg1vvXbJX2WGWUaiIClh7zDvC475nc6M8GziAewVA/viewform" target="_blank" rel="noopener">Commander</a>
+    </div>
+    <div class="p-photos">
+      <a class="main" href="images/enseigne-home-sweet-home-gravee-sur-bois-pose.jpg" target="_blank" rel="noopener"><img src="images/enseigne-home-sweet-home-gravee-sur-bois-pose.jpg" alt="Affiche Home Sweet Home gravée sur bois, posée sur un manteau de cheminée"></a>
+      <a href="images/enseigne-en-bois-gravee-avec-ecorce-naturelle.jpg" target="_blank" rel="noopener"><img src="images/enseigne-en-bois-gravee-avec-ecorce-naturelle.jpg" alt="Affiche en bois avec écorce naturelle" loading="lazy"></a>
+      <a href="images/enseigne-personnalisee-mary-et-michel-gravee-.jpg" target="_blank" rel="noopener"><img src="images/enseigne-personnalisee-mary-et-michel-gravee-.jpg" alt="Affiche personnalisée Mary et Michel" loading="lazy"></a>
+      <a href="images/enseigne-personnalisee-benedicte-et-patrick-l.jpg" target="_blank" rel="noopener"><img src="images/enseigne-personnalisee-benedicte-et-patrick-l.jpg" alt="Affiche personnalisée Bénédicte et Patrick" loading="lazy"></a>
+    </div>
+    <div class="designs">
+      <h3>Designs offerts</h3>
+      <div class="sheet"><img src="formulaire/catalogue-affiches-WS.jpg" alt="Designs offerts pour les affiches : WS1 à WS5" loading="lazy"></div>
+      <p>Le client choisit ses designs au moment de la commande. Un logo ou un nom d'équipe peut remplacer n'importe lequel.</p>
+    </div>
+  </div>
+</section>
+
+<section class="product" id="sous-verres">
+  <div class="wrap">
+    <div class="p-info">
+      <h2>Sous-verres en pin</h2>
+      <div class="size">Jeu de 4 · environ 4 po</div>
+      <p>Gravés un par un sur pin blanc. Le client choisit 4 designs différents, ce qui donne un ensemble assorti plutôt qu'un lot répété. Dans Le Signature, un des quatre porte le logo du courtier.</p>
+      <a class="order" href="https://docs.google.com/forms/d/e/1FAIpQLSfIyIFN_Lg1vvXbJX2WGWUaiIClh7zDvC475nc6M8GziAewVA/viewform" target="_blank" rel="noopener">Commander</a>
+    </div>
+    <div class="p-photos">
+      <a class="main" href="images/sous-verres-en-bois-designs-varies-home-sweet.jpg" target="_blank" rel="noopener"><img src="images/sous-verres-en-bois-designs-varies-home-sweet.jpg" alt="Sous-verres en bois gravés, designs variés" loading="lazy"></a>
+      <a href="images/sous-verres-home-is-where-our-story-begins.jpg" target="_blank" rel="noopener"><img src="images/sous-verres-home-is-where-our-story-begins.jpg" alt="Sous-verres Home is where our story begins" loading="lazy"></a>
+      <a href="images/sous-verres-en-bois-graves-motifs-lac-et-mont.jpg" target="_blank" rel="noopener"><img src="images/sous-verres-en-bois-graves-motifs-lac-et-mont.jpg" alt="Sous-verres motifs lac et montagnes" loading="lazy"></a>
+      <a href="images/pile-de-sous-verres-en-bois-graves-home-sweet.jpg" target="_blank" rel="noopener"><img src="images/pile-de-sous-verres-en-bois-graves-home-sweet.jpg" alt="Pile de sous-verres gravés Home Sweet Home" loading="lazy"></a>
+    </div>
+    <div class="designs">
+      <h3>Designs offerts</h3>
+      <div class="sheet"><img src="formulaire/catalogue-sous-verres-SV.jpg" alt="Designs offerts pour les sous-verres et les aimants : SV1 à SV8" loading="lazy"></div>
+      <p>Le client choisit ses designs au moment de la commande. Un logo ou un nom d'équipe peut remplacer n'importe lequel.</p>
+    </div>
+  </div>
+</section>
+
+<section class="product" id="aimants">
+  <div class="wrap">
+    <div class="p-info">
+      <h2>Aimants gravés</h2>
+      <div class="size">Environ 2,5 po · aimant fort au dos</div>
+      <p>Le petit objet qui finit sur le frigo et qu'on voit tous les jours. Mêmes designs que les sous-verres, en format rond. Dans Le Signature, un des quatre porte le logo du courtier.</p>
+      <a class="order" href="https://docs.google.com/forms/d/e/1FAIpQLSfIyIFN_Lg1vvXbJX2WGWUaiIClh7zDvC475nc6M8GziAewVA/viewform" target="_blank" rel="noopener">Commander</a>
+    </div>
+    <div class="p-photos">
+      <a class="main" href="images/collection-d-aimants-en-bois-graves-motifs-va.jpg" target="_blank" rel="noopener"><img src="images/collection-d-aimants-en-bois-graves-motifs-va.jpg" alt="Collection d&#x27;aimants en bois gravés, motifs variés" loading="lazy"></a>
+      <a href="images/aimants-en-bois-avec-feuille-d-erable-et-home.jpg" target="_blank" rel="noopener"><img src="images/aimants-en-bois-avec-feuille-d-erable-et-home.jpg" alt="Aimants avec feuille d&#x27;érable et Home Sweet Home" loading="lazy"></a>
+      <a href="images/aimants-graves-equipe-carolyn-et-monique.jpg" target="_blank" rel="noopener"><img src="images/aimants-graves-equipe-carolyn-et-monique.jpg" alt="Aimants gravés Équipe Carolyn et Monique" loading="lazy"></a>
+      <a href="images/collection-d-aimants-personnalises-pour-court.jpg" target="_blank" rel="noopener"><img src="images/collection-d-aimants-personnalises-pour-court.jpg" alt="Aimants personnalisés pour courtiers immobiliers" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="product" id="porte-cellulaire">
+  <div class="wrap">
+    <div class="p-info">
+      <h2>Porte-cellulaire personnalisé</h2>
+      <div class="size">Gravé à votre nom · tient aussi une petite affiche</div>
+      <p>C'est la pièce qui travaille pour vous : nom d'équipe, site web et coordonnées gravés dans le bois, posés sur le bureau ou la table de chevet de votre client. Il sert aussi de support pour une petite affiche. Inclus dans les deux paniers.</p>
+      <a class="order" href="https://docs.google.com/forms/d/e/1FAIpQLSfIyIFN_Lg1vvXbJX2WGWUaiIClh7zDvC475nc6M8GziAewVA/viewform" target="_blank" rel="noopener">Commander</a>
+    </div>
+    <div class="p-photos">
+      <a class="main" href="images/porte-cellulaire-en-bois-avec-telephone.jpg" target="_blank" rel="noopener"><img src="images/porte-cellulaire-en-bois-avec-telephone.jpg" alt="Porte-cellulaire en bois tenant un téléphone" loading="lazy"></a>
+      <a href="images/porte-cellulaire-personnalise-equipe-carolyn-.jpg" target="_blank" rel="noopener"><img src="images/porte-cellulaire-personnalise-equipe-carolyn-.jpg" alt="Porte-cellulaire personnalisé Équipe Carolyn et Monique" loading="lazy"></a>
+      <a href="images/porte-cellulaire-tenant-une-petite-affiche-ho.jpg" target="_blank" rel="noopener"><img src="images/porte-cellulaire-tenant-une-petite-affiche-ho.jpg" alt="Porte-cellulaire tenant une petite affiche Home Sweet Home" loading="lazy"></a>
+      <a href="images/porte-cellulaires-en-bois-designs-assortis.jpg" target="_blank" rel="noopener"><img src="images/porte-cellulaires-en-bois-designs-assortis.jpg" alt="Porte-cellulaires en bois, designs assortis" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="product" id="planche">
+  <div class="wrap">
+    <div class="p-info">
+      <h2>Planche de charcuterie</h2>
+      <div class="size">Bois dur · couteau inclus · dans Le Signature</div>
+      <p>Une vraie planche de service en bois dur, livrée avec son couteau. C'est elle qui donne au Signature son effet « grand cadeau » quand le client ouvre le panier.</p>
+      <a class="order" href="https://docs.google.com/forms/d/e/1FAIpQLSfIyIFN_Lg1vvXbJX2WGWUaiIClh7zDvC475nc6M8GziAewVA/viewform" target="_blank" rel="noopener">Commander</a>
+    </div>
+    <div class="p-photos">
+      <a class="main" href="images/panier-signature-cadeau-de-cloture.jpg" target="_blank" rel="noopener"><img src="images/panier-signature-cadeau-de-cloture.jpg" alt="Planche de charcuterie avec couteau dans le panier Le Signature" loading="lazy"></a>
+      <a href="images/panier-signature-noel.jpg" target="_blank" rel="noopener"><img src="images/panier-signature-noel.jpg" alt="Panier Le Signature décoré pour Noël" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="product" id="rondins">
+  <div class="wrap">
+    <div class="p-info">
+      <h2>Rondins gravés</h2>
+      <div class="size">À la carte · écorce naturelle conservée</div>
+      <p>Des tranches de bois brut gravées, avec l'écorce laissée tout autour. Elles ne font pas partie des paniers de base, mais s'ajoutent sur demande ou se commandent seules.</p>
+      <a class="order" href="https://docs.google.com/forms/d/e/1FAIpQLSfIyIFN_Lg1vvXbJX2WGWUaiIClh7zDvC475nc6M8GziAewVA/viewform" target="_blank" rel="noopener">Commander</a>
+    </div>
+    <div class="p-photos">
+      <a class="main" href="images/rondin-de-bois-grave-live-love-laugh-avec-eco.jpg" target="_blank" rel="noopener"><img src="images/rondin-de-bois-grave-live-love-laugh-avec-eco.jpg" alt="Rondin de bois gravé Live Love Laugh avec écorce" loading="lazy"></a>
+      <a href="images/rondin-de-bois-grave-vivre-aimer-rire-en-fami.jpg" target="_blank" rel="noopener"><img src="images/rondin-de-bois-grave-vivre-aimer-rire-en-fami.jpg" alt="Rondin gravé Vivre Aimer Rire en famille" loading="lazy"></a>
+      <a href="images/rondin-de-bois-grave-detail-de-la-gravure-flo.jpg" target="_blank" rel="noopener"><img src="images/rondin-de-bois-grave-detail-de-la-gravure-flo.jpg" alt="Rondin gravé, détail de la gravure florale" loading="lazy"></a>
+      <a href="images/rondin-de-bois-grave-live-love-laugh-vue-rapp.jpg" target="_blank" rel="noopener"><img src="images/rondin-de-bois-grave-live-love-laugh-vue-rapp.jpg" alt="Rondin gravé Live Love Laugh, vue rapprochée" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <h2>Prêt à composer votre panier?</h2>
+    <p>Choisissez votre format et vos designs dans le formulaire de commande. On confirme le prix final et la date sous 48 h.</p>
+    <a class="order" href="https://docs.google.com/forms/d/e/1FAIpQLSfIyIFN_Lg1vvXbJX2WGWUaiIClh7zDvC475nc6M8GziAewVA/viewform" target="_blank" rel="noopener">Commander maintenant</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-mark">
+      <img src="images/sceau-home-sweet-home-canada.png" alt="Sceau Home Sweet Home Canada">
+      <span style="font-family:var(--serif); font-weight:600; font-size:1rem; color:var(--ink);">Home Sweet Home <span style="color:var(--gold); font-style:italic;">Canada</span></span>
+    </div>
+    <div>Fabriqué à la main, Québec · © 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>

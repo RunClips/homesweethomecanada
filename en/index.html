@@ -362,6 +362,27 @@
     .steps{ grid-template-columns: 1fr; }
   }
 
+  /* ---------- faq ---------- */
+  .faq{ padding: 84px 0 90px; background: var(--bg-cream); }
+  .faq .head{ text-align:center; margin-bottom:40px; }
+  .faq .head h2{ font-family: var(--serif); font-weight:600; font-size: clamp(1.7rem,3vw,2.3rem); }
+  .faq .head p{ margin-top:12px; color:rgba(42,27,18,0.7); }
+  .faq .list{ max-width: 760px; margin: 0 auto; border-top:1px solid var(--line); }
+  .faq details{ border-bottom:1px solid var(--line); }
+  .faq summary{
+    list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
+    font-family: var(--serif); font-weight:600; font-size:1.06rem; line-height:1.4;
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::after{
+    content:'+'; position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    font-family: var(--sans); font-weight:700; font-size:1.3rem; color:var(--red);
+  }
+  .faq details[open] summary::after{ content:'–'; }
+  .faq summary:hover{ color:var(--red); }
+  .faq summary:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+  .faq .answer{ padding:0 44px 22px 4px; font-size:0.97rem; line-height:1.7; color:rgba(42,27,18,0.8); }
+
   /* ---------- contact ---------- */
   .contact{
     background: var(--bg-dark-2);
@@ -429,10 +450,11 @@
     <div class="wordmark"><img src="../images/home-sweet-home-canada.png" alt="Home Sweet Home Canada"></div>
     <nav class="links">
       <a href="#paniers">Baskets</a>
-      <a href="#personnalisation">Personalization</a>
+      <a href="produits.html">Products</a>
       <a href="realisations.html">Our Work</a>
       <a href="contenu-paniers.html">What's Inside</a>
       <a href="#comment">How It Works</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="lang-toggle"><a href="../index.html" lang="fr" hreflang="fr">FR</a> / <span class="active">EN</span></div>
@@ -499,7 +521,7 @@
         <div class="tier-photo"><img src="../images/panier-essentiel-cadeau-de-cloture.jpg" alt="The Essential basket as a closing gift" loading="lazy"></div>
         <div class="kicker">The Essential</div>
         <h3>Small basket</h3>
-        <div class="price-note">$65 — for a tight budget, without cutting corners</div>
+        <div class="price-note">$65 — everything you need to make an impression</div>
         <ul>
           <li>4 pine coasters</li>
           <li>2 engraved magnets</li>
@@ -613,6 +635,61 @@
         <h4>Pick-up or delivery</h4>
         <p>Pick-up, delivery, or shipped straight to your clients.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="head">
+      <h2>Frequently asked questions</h2>
+      <p>Turnaround, quantities, logo, delivery — the answers before you order.</p>
+    </div>
+    <div class="list">
+        <details>
+          <summary>How long does production take?</summary>
+          <div class="answer">2 business days for 3 baskets or fewer, 5 business days for up to 8 baskets, and 10 business days for more than 8 baskets at once. The clock starts once the order is confirmed and your logo has arrived.</div>
+        </details>
+        <details>
+          <summary>What is the deadline to receive baskets before Christmas?</summary>
+          <div class="answer">December 13. After that we will do our best, but we can no longer guarantee delivery before the holidays. For a large order, book early — workshop slots fill up fast in November.</div>
+        </details>
+        <details>
+          <summary>Is there a minimum order?</summary>
+          <div class="answer">No. You can order a single basket.</div>
+        </details>
+        <details>
+          <summary>Is there a volume discount?</summary>
+          <div class="answer">Yes, 10% off starting at 10 baskets.</div>
+        </details>
+        <details>
+          <summary>How do I send you my logo?</summary>
+          <div class="answer">By email to atelier83.jm@gmail.com, with your name in the message. A high-resolution PNG or a PDF works well. If you have a vector file (AI, EPS, SVG), that is even better for engraving.</div>
+        </details>
+        <details>
+          <summary>Can I pick different designs from one basket to the next?</summary>
+          <div class="answer">Yes. Write it in the Notes box of the order form and we will confirm the details by email before engraving.</div>
+        </details>
+        <details>
+          <summary>Do you deliver?</summary>
+          <div class="answer">Delivery is arranged at order time, case by case depending on quantity and destination. Delivery fees apply. Pick-up is always available.</div>
+        </details>
+        <details>
+          <summary>How does payment work?</summary>
+          <div class="answer">You receive an invoice through QuickBooks. It must be paid before the baskets are picked up or shipped.</div>
+        </details>
+        <details>
+          <summary>Do I see the result before picking up my order?</summary>
+          <div class="answer">Yes. As soon as your order is finished, we email you photos of your products.</div>
+        </details>
+        <details>
+          <summary>Are the products refundable?</summary>
+          <div class="answer">No. Every piece is custom-engraved with your name or your client's, so orders are not refundable once engraving has started.</div>
+        </details>
+        <details>
+          <summary>Will my basket look exactly like the photos?</summary>
+          <div class="answer">The photos on this site show the style and the contents. Wood is a living material: grain, tone and bark vary from piece to piece, and small natural imperfections are part of the charm. Every basket is assembled by hand and checked before it leaves the workshop.</div>
+        </details>
     </div>
   </div>
 </section>
